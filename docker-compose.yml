@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_DB=dockerDatabase
+      - POSTGRES_USER=dockerUser
+      - POSTGRES_PASSWORD=docker@123Pocker@098
+    ports:
+      - '15432:5432'
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+      - ./sql/create-table.sql:/docker-entrypoint-initdb.d/create-table.sql
+      - ./sql/fill-data.sql:/docker-entrypoint-initdb.d/fill-data.sql
